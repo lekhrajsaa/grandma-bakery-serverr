@@ -46,7 +46,6 @@ app.get("/cartProducts", (req, res) => {
 
 app.post("/cartProducts", (req, res) => {
   const product = req.body;
-  console.log(product);
 
   fs.readFile("./data/cartProduct.json", "utf8", (err, data) => {
     if (err) {
@@ -69,13 +68,23 @@ app.post("/cartProducts", (req, res) => {
   });
 });
 
-app.get("/clearCartData", (req, res) => {
-  const emptyCart = [];
-  fs.writeFileSync(
-    "./data/cartProduct.json",
-    JSON.stringify(emptyCart, null, 1)
-  );
-  res.send("Cleared Cart Data");
+app.post("/cartAmount", (req, res) => {
+  const total = req.body;
+  const amount = total.total;
+  fs.writeFileSync("./data/cartAmount.json", JSON.stringify(amount, null, 1));
+  console.log(amount);
+});
+
+app.get("/cartAmount", (req, res) => {
+  fs.readFile("./data/cartAmount.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const parsedData = JSON.parse(data);
+      console.log(parsedData);
+      res.status(200).send(parsedData);
+    }
+  });
 });
 
 app.get("/cartAllData", (req, res) => {
