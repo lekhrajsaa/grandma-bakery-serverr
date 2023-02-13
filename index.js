@@ -74,27 +74,27 @@ app.get("/clearCartData", (req, res) => {
     "./data/cartProduct.json",
     JSON.stringify(emptyCart, null, 1)
   );
-  res.send('Cart data is cleared')
+  res.send("Cart data is cleared");
 });
 
-app.post("/cartAmount", (req, res) => {
-  const total = req.body;
-  console.log(total);
-  const amount = total.total;
-  fs.writeFileSync("./data/cartAmount.json", JSON.stringify(amount, null, 1));
-  console.log(amount);
-});
+// app.post("/cartAmount", (req, res) => {
+//   const total = req.body;
+//   console.log(req.body);
+//   const amount = total.total;
+//   fs.writeFileSync("./data/cartAmount.json", JSON.stringify(amount, null, 1));
+//   // console.log(amount);
+// });
 
-app.get("/cartAmount", (req, res) => {
-  fs.readFile("./data/cartAmount.json", "utf8", (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(data);
-      res.status(200).send(data);
-    }
-  });
-});
+// app.get("/cartAmount", (req, res) => {
+//   fs.readFile("./data/cartAmount.json", "utf8", (err, data) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log(data);
+//       res.status(200).send(data);
+//     }
+//   });
+// });
 
 app.get("/cartAllData", (req, res) => {
   fs.readFile("./data/cartAllData.json", "utf8", (err, jsonString) => {
