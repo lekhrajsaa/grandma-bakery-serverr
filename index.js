@@ -81,9 +81,8 @@ app.get("/cartAmount", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      const parsedData = JSON.parse(data);
-      console.log(parsedData);
-      res.status(200).send(parsedData);
+      console.log(data);
+      res.status(200).send(data);
     }
   });
 });
