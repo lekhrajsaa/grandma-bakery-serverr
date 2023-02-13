@@ -75,6 +75,7 @@ app.get("/clearCartData", (req, res) => {
     "./data/cartProduct.json",
     JSON.stringify(emptyCart, null, 1)
   );
+  res.send("Cleared Cart Data");
 });
 
 app.get("/cartAllData", (req, res) => {
