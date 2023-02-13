@@ -68,13 +68,13 @@ app.post("/cartProducts", (req, res) => {
   });
 });
 
-// app.post("/cartAmount", (req, res) => {
-//   const total = req.body;
-//   console.log(total);
-//   const amount = total.total;
-//   fs.writeFileSync("./data/cartAmount.json", JSON.stringify(amount, null, 1));
-//   console.log(amount);
-// });
+app.post("/cartAmount", (req, res) => {
+  const total = req.body;
+  console.log(total);
+  const amount = total.total;
+  fs.writeFileSync("./data/cartAmount.json", JSON.stringify(amount, null, 1));
+  console.log(amount);
+});
 
 app.get("/cartAmount", (req, res) => {
   fs.readFile("./data/cartAmount.json", "utf8", (err, data) => {
