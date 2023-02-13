@@ -68,6 +68,33 @@ app.post("/cartProducts", (req, res) => {
   });
 });
 
+app.post("/deleteCartProducts", (req, res) => {
+  const id = req.body;
+  console.log(id.id);
+
+  fs.readFile("./data/cartProduct.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const cartProducts = JSON.parse(data);
+      const filteredCart = cartProducts.filter(
+        (filtered) => filtered._id !== id.id
+      );
+      fs.writeFile(
+        "./data/cartProduct.json",
+        JSON.stringify(filteredCart),
+        (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("added");
+          }
+        }
+      );
+    }
+  });
+});
+
 app.get("/clearCartData", (req, res) => {
   const emptyCart = [];
   fs.writeFileSync(
