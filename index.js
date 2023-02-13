@@ -69,6 +69,14 @@ app.post("/cartProducts", (req, res) => {
   });
 });
 
+app.get("/clearCartData", (req, res) => {
+  const emptyCart = [];
+  fs.writeFileSync(
+    "./data/cartProduct.json",
+    JSON.stringify(emptyCart, null, 1)
+  );
+});
+
 app.get("/cartAllData", (req, res) => {
   fs.readFile("./data/cartAllData.json", "utf8", (err, jsonString) => {
     if (err) {
