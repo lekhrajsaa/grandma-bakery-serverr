@@ -68,6 +68,15 @@ app.post("/cartProducts", (req, res) => {
   });
 });
 
+app.get("/clearCartData", (req, res) => {
+  const emptyCart = [];
+  fs.writeFileSync(
+    "./data/cartProduct.json",
+    JSON.stringify(emptyCart, null, 1)
+  );
+  res.send('Cart data is cleared')
+});
+
 app.post("/cartAmount", (req, res) => {
   const total = req.body;
   console.log(total);
