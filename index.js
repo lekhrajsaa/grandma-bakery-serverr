@@ -104,24 +104,32 @@ app.get("/clearCartData", (req, res) => {
   res.send("Cart data is cleared");
 });
 
-// app.post("/cartAmount", (req, res) => {
-//   const total = req.body;
-//   console.log(req.body);
-//   const amount = total.total;
-//   fs.writeFileSync("./data/cartAmount.json", JSON.stringify(amount, null, 1));
-//   // console.log(amount);
-// });
+app.post("/cartAmount", (req, res) => {
+  const amount = req.body;
 
-// app.get("/cartAmount", (req, res) => {
-//   fs.readFile("./data/cartAmount.json", "utf8", (err, data) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log(data);
-//       res.status(200).send(data);
-//     }
-//   });
-// });
+  fs.writeFile(
+    "./data/cartAmount.json",
+    JSON.stringify(amount),
+    (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("added");
+      }
+    }
+  );
+});
+
+app.get("/cartAmount", (req, res) => {
+  fs.readFile("./data/cartAmount.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(data);
+      res.status(200).send(data);
+    }
+  });
+});
 
 app.get("/cartAllData", (req, res) => {
   fs.readFile("./data/cartAllData.json", "utf8", (err, jsonString) => {
