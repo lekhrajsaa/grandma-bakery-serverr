@@ -18,3 +18,8 @@ https://grandma-bakery-server.up.railway.app/
 2. Express js
 3. Cors
 4. Voucher code generator
+
+# How to install
+1. Clone the repository in your computer
+2. Run `npm install` to download the dependencies
+3. Run `nodemon index.js` or `npm run start-dev` to run the server on local host 5000
